@@ -1,7 +1,7 @@
 NAME    = tic-tac-toe
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
-SRC     = main.c board.c game.c
+SRC     = main.c tableau.c jeu.c
 OBJ     = $(SRC:.c=.o)
 
 all: $(NAME)
