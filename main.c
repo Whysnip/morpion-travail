@@ -4,43 +4,50 @@
 
 int main(void)
 {
-    char board[BOARD_SIZE];
-    int pos;
+    char plateau[9];
+    int choix;
 
-    init_board(board);
+    initialiser_plateau(plateau);
+
     while (1)
     {
-        
-        display_board(board);
-        pos = ask_player_move(board);
-        if (pos == -1)
+        afficher_plateau(plateau);
+        choix = demander_case(plateau);
+        if (choix == -1)
             return 1;
-        board[pos] = PLAYER_SYMBOL;
-        if (has_won(board, PLAYER_SYMBOL))
-        {
-            display_board(board);
-            printf("Bravo, vous avez gagne !\n");
-            return 0;
-        }
-        if (is_full(board))
-            break;
+        plateau[choix] = JOUEUR;
 
-        
-        display_board(board);
-        printf("L'ordinateur reflechit...\n");
-        sleep(1);
-        pos = computer_move(board);
-        board[pos] = COMPUTER_SYMBOL;
-        if (has_won(board, COMPUTER_SYMBOL))
+        if (a_gagne(plateau, JOUEUR))
         {
-            display_board(board);
-            printf("L'ordinateur a gagne... Dommage !\n");
+            afficher_plateau(plateau);
+            printf("Vous avez gagne, bravo !\n");
             return 0;
         }
-        if (is_full(board))
-            break;
+        if (plateau_plein(plateau))
+        {
+            afficher_plateau(plateau);
+            printf("Match nul !\n");
+            return 0;
+        }
+
+        afficher_plateau(plateau);
+        printf("L'ordinateur joue...\n");
+        sleep(1);
+        choix = choisir_case_ordi(plateau);
+        plateau[choix] = ORDI;
+
+        if (a_gagne(plateau, ORDI))
+        {
+            afficher_plateau(plateau);
+            printf("L'ordinateur a gagne !\n");
+            return 0;
+        }
+        if (plateau_plein(plateau))
+        {
+            afficher_plateau(plateau);
+            printf("Match nul !\n");
+            return 0;
+        }
     }
-    display_board(board);
-    printf("Match nul !\n");
     return 0;
 }
