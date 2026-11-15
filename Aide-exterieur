@@ -1,1 +1,6 @@
-Pas eu besoin d'aide de l'ia
+J'ai utilisé CLAUDE un bon moment car j'était complètement perdu.
+Comme `static`** : `clear_input` qui n'est visible que dans `game.c`.
+La détection de victoire** : 3 lignes, 3 colonnes et 2 diagonales, repérées avec les indices 0 à 8
+La validation de la saisie** : refuser les cases hors limites et déjà occupées empêche le joueur de tricher.
+Claude ma aussi aider sur `system("clear")` et `sleep`** : l'un rafraîchit le terminal, l'autre fait une pause (`unistd.h`).
+Et enfin je me suis aider de youtube.
